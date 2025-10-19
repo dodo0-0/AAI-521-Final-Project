@@ -1,4 +1,4 @@
-# app_day1.py
+# app_day1.py 
 import streamlit as st
 from diffusers import StableDiffusionInpaintPipeline
 import torch
