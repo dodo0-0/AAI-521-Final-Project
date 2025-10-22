@@ -27,6 +27,7 @@ def load_model():
             #     variant="fp32",  # Force float32 to reduce memory
             #     local_files_only=False  # Allow online fetch
             # )
+            model_id = "runwayml/stable-diffusion-v1-5"
             pipe = StableDiffusionInpaintPipeline.from_pretrained(
             model_id,
             torch_dtype=torch.float32,
