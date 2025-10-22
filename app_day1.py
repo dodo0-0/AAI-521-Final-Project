@@ -23,10 +23,11 @@ def load_model():
         try:
             pipe = StableDiffusionInpaintPipeline.from_pretrained(
                 "runwayml/stable-diffusion-inpainting",
-                torch_dtype=torch.float32,  # CPU-friendly without variant
+                torch_dtype=torch.float32,  # CPU-only
+                variant="fp32",  # Force float32 to reduce memory
                 local_files_only=False  # Allow online fetch
             )
-            pipe = pipe.to("cpu")  # Force CPU
+            pipe = pipe.to("cpu")
             return pipe
         except Exception as e:
             st.error(f"Model load failed: {e}. Using placeholder mode.")
