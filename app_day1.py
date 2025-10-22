@@ -21,11 +21,15 @@ def load_model():
     if pipe is None:
         st.info("Loading model... (Takes ~1-2 mins, may fail on Cloud—try local for full power)")
         try:
+            # pipe = StableDiffusionInpaintPipeline.from_pretrained(
+            #     "runwayml/stable-diffusion-inpainting",
+            #     torch_dtype=torch.float32,  # CPU-only
+            #     variant="fp32",  # Force float32 to reduce memory
+            #     local_files_only=False  # Allow online fetch
+            # )
             pipe = StableDiffusionInpaintPipeline.from_pretrained(
-                "runwayml/stable-diffusion-inpainting",
-                torch_dtype=torch.float32,  # CPU-only
-                variant="fp32",  # Force float32 to reduce memory
-                local_files_only=False  # Allow online fetch
+            model_id,
+            torch_dtype=torch.float32,
             )
             pipe = pipe.to("cpu")
             return pipe
